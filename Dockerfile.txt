@@ -1,0 +1,39 @@
+# Use Node 22 as required by the challenge
+FROM node:22-bullseye
+
+# Install system dependencies for Substrate/Polkadot binaries
+RUN apt-get update && apt-get install -y \
+    python3 \
+    make \
+    g++ \
+    libusb-1.0-0-dev \
+    libudev-dev \
+    git \
+    && rm -rf /var/lib/apt/lists/*
+
+# Set the working directory
+WORKDIR /app
+
+# Enable Corepack to use the version of Yarn specified in the project
+RUN corepack enable
+
+# Copy package files first to leverage Docker cache
+COPY package.json yarn.lock* ./
+COPY packages/hardhat/package.json ./packages/hardhat/
+COPY packages/nextjs/package.json ./packages/nextjs/
+
+# Install dependencies
+# We use a volume for node_modules to avoid "polluting" your host folder
+RUN yarn install
+
+# Copy the rest of the application
+COPY . .
+
+# Expose the necessary ports
+# 3000: NextJS Frontend
+# 8545: ETH-RPC Bridge
+# 9944: Substrate Node WebSocket
+EXPOSE 3000 8545 9944
+
+# Default command (can be overridden by docker-compose)
+CMD ["yarn", "start"]

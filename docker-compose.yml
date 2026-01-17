@@ -1,0 +1,47 @@
+services:
+  # The Substrate Node (The Blockchain)
+  chain:
+    build: .
+    command: yarn chain
+    ports:
+      - "9944:9944"
+    volumes:
+      - .:/app
+      - /app/node_modules # Prevents host node_modules from overriding container
+    environment:
+      - RUST_LOG=error,evm=debug,sc_rpc_server=info,runtime::revive=debug
+
+  # The ETH-RPC Bridge (Allows Metamask/Hardhat to talk to Substrate)
+  rpc:
+    build: .
+    command: yarn rpc
+    depends_on:
+      - chain
+    ports:
+      - "8545:8545"
+    volumes:
+      - .:/app
+      - /app/node_modules
+
+  # The NextJS Frontend
+  frontend:
+    build: .
+    command: yarn start
+    depends_on:
+      - rpc
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      - NEXT_PUBLIC_NETWORK=hardhat # Tells the UI to look at the local RPC
+
+  # Utility service for deploying contracts
+  # You can run: docker-compose run deployer yarn deploy
+  deployer:
+    build: .
+    profiles: ["tools"] # Doesn't start automatically with 'up'
+    volumes:
+      - .:/app
+      - /app/node_modules
