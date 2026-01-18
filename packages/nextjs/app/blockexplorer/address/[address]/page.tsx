@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import { hardhat } from "viem/chains";
+import { localNode } from "~~/scaffold.config";
 import { AddressComponent } from "~~/app/blockexplorer/_components/AddressComponent";
 import deployedContracts from "~~/contracts/deployedContracts";
 import { isZeroAddress } from "~~/utils/scaffold-eth/common";
@@ -38,7 +38,7 @@ async function fetchByteCodeAndAssembly(buildInfoDirectory: string, contractPath
 
 const getContractData = async (address: string) => {
   const contracts = deployedContracts as GenericContractsDeclaration | null;
-  const chainId = hardhat.id;
+  const chainId = localNode.id;
   let contractPath = "";
 
   const buildInfoDirectory = path.join(

@@ -4,6 +4,807 @@
  */
 import { GenericContractsDeclaration } from "~~/utils/scaffold-eth/contract";
 
-const deployedContracts = {} as const;
+const deployedContracts = {
+  420420420: {
+    UTMCoin: {
+      address: "0x82745827D0B8972eC0583B3100eCb30b81Db0072",
+      abi: [
+              {
+                      "inputs": [
+                              {
+                                      "internalType": "address",
+                                      "name": "_owner",
+                                      "type": "address"
+                              }
+                      ],
+                      "stateMutability": "nonpayable",
+                      "type": "constructor"
+              },
+              {
+                      "inputs": [
+                              {
+                                      "internalType": "address",
+                                      "name": "spender",
+                                      "type": "address"
+                              },
+                              {
+                                      "internalType": "uint256",
+                                      "name": "allowance",
+                                      "type": "uint256"
+                              },
+                              {
+                                      "internalType": "uint256",
+                                      "name": "needed",
+                                      "type": "uint256"
+                              }
+                      ],
+                      "name": "ERC20InsufficientAllowance",
+                      "type": "error"
+              },
+              {
+                      "inputs": [
+                              {
+                                      "internalType": "address",
+                                      "name": "sender",
+                                      "type": "address"
+                              },
+                              {
+                                      "internalType": "uint256",
+                                      "name": "balance",
+                                      "type": "uint256"
+                              },
+                              {
+                                      "internalType": "uint256",
+                                      "name": "needed",
+                                      "type": "uint256"
+                              }
+                      ],
+                      "name": "ERC20InsufficientBalance",
+                      "type": "error"
+              },
+              {
+                      "inputs": [
+                              {
+                                      "internalType": "address",
+                                      "name": "approver",
+                                      "type": "address"
+                              }
+                      ],
+                      "name": "ERC20InvalidApprover",
+                      "type": "error"
+              },
+              {
+                      "inputs": [
+                              {
+                                      "internalType": "address",
+                                      "name": "receiver",
+                                      "type": "address"
+                              }
+                      ],
+                      "name": "ERC20InvalidReceiver",
+                      "type": "error"
+              },
+              {
+                      "inputs": [
+                              {
+                                      "internalType": "address",
+                                      "name": "sender",
+                                      "type": "address"
+                              }
+                      ],
+                      "name": "ERC20InvalidSender",
+                      "type": "error"
+              },
+              {
+                      "inputs": [
+                              {
+                                      "internalType": "address",
+                                      "name": "spender",
+                                      "type": "address"
+                              }
+                      ],
+                      "name": "ERC20InvalidSpender",
+                      "type": "error"
+              },
+              {
+                      "inputs": [
+                              {
+                                      "internalType": "address",
+                                      "name": "owner",
+                                      "type": "address"
+                              }
+                      ],
+                      "name": "OwnableInvalidOwner",
+                      "type": "error"
+              },
+              {
+                      "inputs": [
+                              {
+                                      "internalType": "address",
+                                      "name": "account",
+                                      "type": "address"
+                              }
+                      ],
+                      "name": "OwnableUnauthorizedAccount",
+                      "type": "error"
+              },
+              {
+                      "anonymous": false,
+                      "inputs": [
+                              {
+                                      "indexed": true,
+                                      "internalType": "address",
+                                      "name": "owner",
+                                      "type": "address"
+                              },
+                              {
+                                      "indexed": true,
+                                      "internalType": "address",
+                                      "name": "spender",
+                                      "type": "address"
+                              },
+                              {
+                                      "indexed": false,
+                                      "internalType": "uint256",
+                                      "name": "value",
+                                      "type": "uint256"
+                              }
+                      ],
+                      "name": "Approval",
+                      "type": "event"
+              },
+              {
+                      "anonymous": false,
+                      "inputs": [
+                              {
+                                      "indexed": true,
+                                      "internalType": "address",
+                                      "name": "previousOwner",
+                                      "type": "address"
+                              },
+                              {
+                                      "indexed": true,
+                                      "internalType": "address",
+                                      "name": "newOwner",
+                                      "type": "address"
+                              }
+                      ],
+                      "name": "OwnershipTransferred",
+                      "type": "event"
+              },
+              {
+                      "anonymous": false,
+                      "inputs": [
+                              {
+                                      "indexed": true,
+                                      "internalType": "address",
+                                      "name": "from",
+                                      "type": "address"
+                              },
+                              {
+                                      "indexed": true,
+                                      "internalType": "address",
+                                      "name": "to",
+                                      "type": "address"
+                              },
+                              {
+                                      "indexed": false,
+                                      "internalType": "uint256",
+                                      "name": "value",
+                                      "type": "uint256"
+                              }
+                      ],
+                      "name": "Transfer",
+                      "type": "event"
+              },
+              {
+                      "anonymous": false,
+                      "inputs": [
+                              {
+                                      "indexed": true,
+                                      "internalType": "address",
+                                      "name": "user",
+                                      "type": "address"
+                              },
+                              {
+                                      "indexed": false,
+                                      "internalType": "uint256",
+                                      "name": "amount",
+                                      "type": "uint256"
+                              }
+                      ],
+                      "name": "UserRegistered",
+                      "type": "event"
+              },
+              {
+                      "inputs": [
+                              {
+                                      "internalType": "address",
+                                      "name": "owner",
+                                      "type": "address"
+                              },
+                              {
+                                      "internalType": "address",
+                                      "name": "spender",
+                                      "type": "address"
+                              }
+                      ],
+                      "name": "allowance",
+                      "outputs": [
+                              {
+                                      "internalType": "uint256",
+                                      "name": "",
+                                      "type": "uint256"
+                              }
+                      ],
+                      "stateMutability": "view",
+                      "type": "function"
+              },
+              {
+                      "inputs": [
+                              {
+                                      "internalType": "address",
+                                      "name": "spender",
+                                      "type": "address"
+                              },
+                              {
+                                      "internalType": "uint256",
+                                      "name": "value",
+                                      "type": "uint256"
+                              }
+                      ],
+                      "name": "approve",
+                      "outputs": [
+                              {
+                                      "internalType": "bool",
+                                      "name": "",
+                                      "type": "bool"
+                              }
+                      ],
+                      "stateMutability": "nonpayable",
+                      "type": "function"
+              },
+              {
+                      "inputs": [
+                              {
+                                      "internalType": "address",
+                                      "name": "account",
+                                      "type": "address"
+                              }
+                      ],
+                      "name": "balanceOf",
+                      "outputs": [
+                              {
+                                      "internalType": "uint256",
+                                      "name": "",
+                                      "type": "uint256"
+                              }
+                      ],
+                      "stateMutability": "view",
+                      "type": "function"
+              },
+              {
+                      "inputs": [],
+                      "name": "decimals",
+                      "outputs": [
+                              {
+                                      "internalType": "uint8",
+                                      "name": "",
+                                      "type": "uint8"
+                              }
+                      ],
+                      "stateMutability": "pure",
+                      "type": "function"
+              },
+              {
+                      "inputs": [
+                              {
+                                      "internalType": "address",
+                                      "name": "",
+                                      "type": "address"
+                              }
+                      ],
+                      "name": "hasClaimed",
+                      "outputs": [
+                              {
+                                      "internalType": "bool",
+                                      "name": "",
+                                      "type": "bool"
+                              }
+                      ],
+                      "stateMutability": "view",
+                      "type": "function"
+              },
+              {
+                      "inputs": [
+                              {
+                                      "internalType": "address",
+                                      "name": "to",
+                                      "type": "address"
+                              },
+                              {
+                                      "internalType": "uint256",
+                                      "name": "amount",
+                                      "type": "uint256"
+                              }
+                      ],
+                      "name": "mint",
+                      "outputs": [],
+                      "stateMutability": "nonpayable",
+                      "type": "function"
+              },
+              {
+                      "inputs": [],
+                      "name": "name",
+                      "outputs": [
+                              {
+                                      "internalType": "string",
+                                      "name": "",
+                                      "type": "string"
+                              }
+                      ],
+                      "stateMutability": "view",
+                      "type": "function"
+              },
+              {
+                      "inputs": [],
+                      "name": "owner",
+                      "outputs": [
+                              {
+                                      "internalType": "address",
+                                      "name": "",
+                                      "type": "address"
+                              }
+                      ],
+                      "stateMutability": "view",
+                      "type": "function"
+              },
+              {
+                      "inputs": [],
+                      "name": "register",
+                      "outputs": [],
+                      "stateMutability": "nonpayable",
+                      "type": "function"
+              },
+              {
+                      "inputs": [],
+                      "name": "renounceOwnership",
+                      "outputs": [],
+                      "stateMutability": "nonpayable",
+                      "type": "function"
+              },
+              {
+                      "inputs": [],
+                      "name": "symbol",
+                      "outputs": [
+                              {
+                                      "internalType": "string",
+                                      "name": "",
+                                      "type": "string"
+                              }
+                      ],
+                      "stateMutability": "view",
+                      "type": "function"
+              },
+              {
+                      "inputs": [],
+                      "name": "totalSupply",
+                      "outputs": [
+                              {
+                                      "internalType": "uint256",
+                                      "name": "",
+                                      "type": "uint256"
+                              }
+                      ],
+                      "stateMutability": "view",
+                      "type": "function"
+              },
+              {
+                      "inputs": [
+                              {
+                                      "internalType": "address",
+                                      "name": "to",
+                                      "type": "address"
+                              },
+                              {
+                                      "internalType": "uint256",
+                                      "name": "value",
+                                      "type": "uint256"
+                              }
+                      ],
+                      "name": "transfer",
+                      "outputs": [
+                              {
+                                      "internalType": "bool",
+                                      "name": "",
+                                      "type": "bool"
+                              }
+                      ],
+                      "stateMutability": "nonpayable",
+                      "type": "function"
+              },
+              {
+                      "inputs": [
+                              {
+                                      "internalType": "address",
+                                      "name": "from",
+                                      "type": "address"
+                              },
+                              {
+                                      "internalType": "address",
+                                      "name": "to",
+                                      "type": "address"
+                              },
+                              {
+                                      "internalType": "uint256",
+                                      "name": "value",
+                                      "type": "uint256"
+                              }
+                      ],
+                      "name": "transferFrom",
+                      "outputs": [
+                              {
+                                      "internalType": "bool",
+                                      "name": "",
+                                      "type": "bool"
+                              }
+                      ],
+                      "stateMutability": "nonpayable",
+                      "type": "function"
+              },
+              {
+                      "inputs": [
+                              {
+                                      "internalType": "address",
+                                      "name": "newOwner",
+                                      "type": "address"
+                              }
+                      ],
+                      "name": "transferOwnership",
+                      "outputs": [],
+                      "stateMutability": "nonpayable",
+                      "type": "function"
+              }
+      ],
+      inheritedFunctions: {},
+    },
+    UTMStore: {
+      address: "0xEC69d4f48f4f1740976968FAb9828d645Ad1d77f",
+      abi: [
+              {
+                      "inputs": [
+                              {
+                                      "internalType": "address",
+                                      "name": "_tokenAddress",
+                                      "type": "address"
+                              },
+                              {
+                                      "internalType": "address",
+                                      "name": "_owner",
+                                      "type": "address"
+                              }
+                      ],
+                      "stateMutability": "nonpayable",
+                      "type": "constructor"
+              },
+              {
+                      "inputs": [
+                              {
+                                      "internalType": "address",
+                                      "name": "owner",
+                                      "type": "address"
+                              }
+                      ],
+                      "name": "OwnableInvalidOwner",
+                      "type": "error"
+              },
+              {
+                      "inputs": [
+                              {
+                                      "internalType": "address",
+                                      "name": "account",
+                                      "type": "address"
+                              }
+                      ],
+                      "name": "OwnableUnauthorizedAccount",
+                      "type": "error"
+              },
+              {
+                      "anonymous": false,
+                      "inputs": [
+                              {
+                                      "indexed": true,
+                                      "internalType": "address",
+                                      "name": "buyer",
+                                      "type": "address"
+                              },
+                              {
+                                      "indexed": true,
+                                      "internalType": "uint256",
+                                      "name": "productId",
+                                      "type": "uint256"
+                              },
+                              {
+                                      "indexed": false,
+                                      "internalType": "uint256",
+                                      "name": "price",
+                                      "type": "uint256"
+                              },
+                              {
+                                      "indexed": false,
+                                      "internalType": "uint256",
+                                      "name": "timestamp",
+                                      "type": "uint256"
+                              }
+                      ],
+                      "name": "ItemPurchased",
+                      "type": "event"
+              },
+              {
+                      "anonymous": false,
+                      "inputs": [
+                              {
+                                      "indexed": true,
+                                      "internalType": "address",
+                                      "name": "previousOwner",
+                                      "type": "address"
+                              },
+                              {
+                                      "indexed": true,
+                                      "internalType": "address",
+                                      "name": "newOwner",
+                                      "type": "address"
+                              }
+                      ],
+                      "name": "OwnershipTransferred",
+                      "type": "event"
+              },
+              {
+                      "anonymous": false,
+                      "inputs": [
+                              {
+                                      "indexed": true,
+                                      "internalType": "uint256",
+                                      "name": "productId",
+                                      "type": "uint256"
+                              },
+                              {
+                                      "indexed": false,
+                                      "internalType": "uint256",
+                                      "name": "price",
+                                      "type": "uint256"
+                              },
+                              {
+                                      "indexed": false,
+                                      "internalType": "bool",
+                                      "name": "isActive",
+                                      "type": "bool"
+                              },
+                              {
+                                      "indexed": true,
+                                      "internalType": "address",
+                                      "name": "updatedBy",
+                                      "type": "address"
+                              }
+                      ],
+                      "name": "ProductUpdated",
+                      "type": "event"
+              },
+              {
+                      "anonymous": false,
+                      "inputs": [
+                              {
+                                      "indexed": true,
+                                      "internalType": "address",
+                                      "name": "to",
+                                      "type": "address"
+                              },
+                              {
+                                      "indexed": false,
+                                      "internalType": "uint256",
+                                      "name": "amount",
+                                      "type": "uint256"
+                              }
+                      ],
+                      "name": "TokensWithdrawn",
+                      "type": "event"
+              },
+              {
+                      "inputs": [
+                              {
+                                      "internalType": "uint256",
+                                      "name": "productId",
+                                      "type": "uint256"
+                              }
+                      ],
+                      "name": "getProduct",
+                      "outputs": [
+                              {
+                                      "internalType": "uint256",
+                                      "name": "price",
+                                      "type": "uint256"
+                              },
+                              {
+                                      "internalType": "bool",
+                                      "name": "isActive",
+                                      "type": "bool"
+                              }
+                      ],
+                      "stateMutability": "view",
+                      "type": "function"
+              },
+              {
+                      "inputs": [],
+                      "name": "getStoreStats",
+                      "outputs": [
+                              {
+                                      "internalType": "uint256",
+                                      "name": "purchases",
+                                      "type": "uint256"
+                              },
+                              {
+                                      "internalType": "uint256",
+                                      "name": "revenue",
+                                      "type": "uint256"
+                              },
+                              {
+                                      "internalType": "uint256",
+                                      "name": "contractBalance",
+                                      "type": "uint256"
+                              }
+                      ],
+                      "stateMutability": "view",
+                      "type": "function"
+              },
+              {
+                      "inputs": [],
+                      "name": "owner",
+                      "outputs": [
+                              {
+                                      "internalType": "address",
+                                      "name": "",
+                                      "type": "address"
+                              }
+                      ],
+                      "stateMutability": "view",
+                      "type": "function"
+              },
+              {
+                      "inputs": [
+                              {
+                                      "internalType": "uint256",
+                                      "name": "",
+                                      "type": "uint256"
+                              }
+                      ],
+                      "name": "products",
+                      "outputs": [
+                              {
+                                      "internalType": "uint256",
+                                      "name": "price",
+                                      "type": "uint256"
+                              },
+                              {
+                                      "internalType": "bool",
+                                      "name": "isActive",
+                                      "type": "bool"
+                              }
+                      ],
+                      "stateMutability": "view",
+                      "type": "function"
+              },
+              {
+                      "inputs": [
+                              {
+                                      "internalType": "uint256",
+                                      "name": "productId",
+                                      "type": "uint256"
+                              }
+                      ],
+                      "name": "purchaseItem",
+                      "outputs": [],
+                      "stateMutability": "nonpayable",
+                      "type": "function"
+              },
+              {
+                      "inputs": [],
+                      "name": "renounceOwnership",
+                      "outputs": [],
+                      "stateMutability": "nonpayable",
+                      "type": "function"
+              },
+              {
+                      "inputs": [
+                              {
+                                      "internalType": "uint256",
+                                      "name": "productId",
+                                      "type": "uint256"
+                              },
+                              {
+                                      "internalType": "uint256",
+                                      "name": "price",
+                                      "type": "uint256"
+                              },
+                              {
+                                      "internalType": "bool",
+                                      "name": "isActive",
+                                      "type": "bool"
+                              }
+                      ],
+                      "name": "setProduct",
+                      "outputs": [],
+                      "stateMutability": "nonpayable",
+                      "type": "function"
+              },
+              {
+                      "inputs": [],
+                      "name": "token",
+                      "outputs": [
+                              {
+                                      "internalType": "contract IERC20",
+                                      "name": "",
+                                      "type": "address"
+                              }
+                      ],
+                      "stateMutability": "view",
+                      "type": "function"
+              },
+              {
+                      "inputs": [],
+                      "name": "totalPurchases",
+                      "outputs": [
+                              {
+                                      "internalType": "uint256",
+                                      "name": "",
+                                      "type": "uint256"
+                              }
+                      ],
+                      "stateMutability": "view",
+                      "type": "function"
+              },
+              {
+                      "inputs": [],
+                      "name": "totalRevenue",
+                      "outputs": [
+                              {
+                                      "internalType": "uint256",
+                                      "name": "",
+                                      "type": "uint256"
+                              }
+                      ],
+                      "stateMutability": "view",
+                      "type": "function"
+              },
+              {
+                      "inputs": [
+                              {
+                                      "internalType": "address",
+                                      "name": "newOwner",
+                                      "type": "address"
+                              }
+                      ],
+                      "name": "transferOwnership",
+                      "outputs": [],
+                      "stateMutability": "nonpayable",
+                      "type": "function"
+              },
+              {
+                      "inputs": [
+                              {
+                                      "internalType": "uint256",
+                                      "name": "amount",
+                                      "type": "uint256"
+                              }
+                      ],
+                      "name": "withdraw",
+                      "outputs": [],
+                      "stateMutability": "nonpayable",
+                      "type": "function"
+              }
+      ],
+      inheritedFunctions: {},
+    },
+  },
+} as const;
 
 export default deployedContracts satisfies GenericContractsDeclaration;

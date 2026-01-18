@@ -1,0 +1,39 @@
+FROM node:22-bookworm
+
+WORKDIR /app
+
+# Install system dependencies and build tools
+RUN apt-get update && apt-get install -y \
+    python3 \
+    make \
+    g++ \
+    libusb-1.0-0-dev \
+    libudev-dev \
+    git \
+    curl \
+    wget \
+    && rm -rf /var/lib/apt/lists/*
+
+# Enable Corepack
+RUN corepack enable
+
+# Copy package files
+COPY package.json yarn.lock* ./
+COPY packages/hardhat/package.json ./packages/hardhat/
+COPY packages/nextjs/package.json ./packages/nextjs/
+
+# Download Substrate binaries
+RUN wget -O /app/revive-dev-node \
+      https://github.com/paritytech/hardhat-polkadot/releases/download/nodes-18323842311/revive-dev-node-linux-x64 && \
+    wget -O /app/eth-rpc \
+      https://github.com/paritytech/hardhat-polkadot/releases/download/nodes-18323842311/eth-rpc-linux-x64 && \
+    chmod +x /app/revive-dev-node /app/eth-rpc
+
+# Create data directory
+RUN mkdir -p /data
+
+EXPOSE 9944 9933 30333 8545
+
+ENV RUST_LOG=info,eth-rpc=debug
+
+CMD ["/app/eth-rpc", "--dev", "--node-rpc-url", "ws://substrate-node:9944"]

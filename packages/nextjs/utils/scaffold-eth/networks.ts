@@ -1,5 +1,5 @@
 import * as chains from "viem/chains";
-import scaffoldConfig from "~~/scaffold.config";
+import scaffoldConfig, { localNode } from "~~/scaffold.config";
 
 type ChainAttributes = {
   // color | [lightThemeColor, darkThemeColor]
@@ -127,7 +127,8 @@ export function getBlockExplorerTxLink(chainId: number, txnHash: string) {
  */
 export function getBlockExplorerAddressLink(network: chains.Chain, address: string) {
   const blockExplorerBaseURL = network.blockExplorers?.default?.url;
-  if (network.id === chains.hardhat.id) {
+  // Handle local development networks (hardhat and our localNode)
+  if (network.id === chains.hardhat.id || network.id === localNode.id) {
     return `/blockexplorer/address/${address}`;
   }
 

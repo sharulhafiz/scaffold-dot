@@ -1,0 +1,20 @@
+FROM node:22-bullseye
+
+WORKDIR /app
+
+COPY package.json yarn.lock* ./
+COPY packages/hardhat/package.json ./packages/hardhat/
+COPY packages/nextjs/package.json ./packages/nextjs/
+
+RUN npm install --legacy-peer-deps --ignore-scripts
+
+WORKDIR /app/packages/nextjs
+
+ENV NODE_ENV=development
+ENV NEXT_PUBLIC_CHAIN_ID=420420420
+ENV NEXT_PUBLIC_RPC_URL=http://www6.utm.my:8545
+ENV NEXT_PUBLIC_WS_URL=ws://www6.utm.my:9944
+
+EXPOSE 3000
+
+CMD ["npm", "run", "dev"]

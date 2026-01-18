@@ -22,9 +22,8 @@ COPY package.json yarn.lock* ./
 COPY packages/hardhat/package.json ./packages/hardhat/
 COPY packages/nextjs/package.json ./packages/nextjs/
 
-# Install dependencies
-# We use a volume for node_modules to avoid "polluting" your host folder
-RUN yarn install
+# Install dependencies with optional dependencies
+RUN yarn install --ignore-optional
 
 # Copy the rest of the application
 COPY . .

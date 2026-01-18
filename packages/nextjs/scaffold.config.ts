@@ -11,9 +11,16 @@ export const localNode = defineChain({
     symbol: "MINI",
   },
   rpcUrls: {
-    default: { http: ["http://localhost:8545"] },
+    default: {
+      http: [process.env.NEXT_PUBLIC_RPC_URL || "http://localhost:8545"],
+    },
   },
-  blockExplorers: {},
+  blockExplorers: {
+    default: {
+      name: "Local Explorer",
+      url: process.env.NEXT_PUBLIC_BLOCK_EXPLORER_URL || "http://localhost:3000",
+    },
+  },
   testnet: false,
   // Custom fee configuration for pallet-revive's fixed fee model
   // Polkadot revive requires: gas × gasPrice ≥ ~22-25 billion wei total

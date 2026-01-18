@@ -32,8 +32,8 @@ task("deploy").setAction(async (args, hre, runSuper) => {
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
   solidity: '0.8.28',
-  // npm Compiler
   resolc: {
+    version: '0.6.0',
     compilerSource: 'npm',
     settings: {
       optimizer: {
@@ -58,7 +58,10 @@ module.exports = {
     localNode: {
       polkavm: true,
       url: `http://127.0.0.1:8545`,
-      accounts: ["0x5fb92d6e98884f76de468fa3f6278f8807c48bebc13595d45af5bdc4da702133"],
+      accounts: [
+        "0x5fb92d6e98884f76de468fa3f6278f8807c48bebc13595d45af5bdc4da702133", // deployer
+        "0xecc471898fd1ecad87731ff76ab3eaf3c0d2937c3d3832dc5f8c76b1a8ee00a3", // talisman
+      ],
     },
     passetHub: {
       polkavm: true,

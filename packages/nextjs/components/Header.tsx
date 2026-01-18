@@ -6,7 +6,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { hardhat } from "viem/chains";
 import { localNode } from "../scaffold.config"
-import { Bars3Icon, BugAntIcon } from "@heroicons/react/24/outline";
+import { Bars3Icon, BugAntIcon, ShoppingCartIcon, UserIcon } from "@heroicons/react/24/outline";
 import { FaucetButton, RainbowKitCustomConnectButton } from "~~/components/scaffold-eth";
 import { useOutsideClick, useTargetNetwork } from "~~/hooks/scaffold-eth";
 
@@ -20,6 +20,16 @@ export const menuLinks: HeaderMenuLink[] = [
   {
     label: "Home",
     href: "/",
+  },
+  {
+    label: "Store",
+    href: "/store",
+    icon: <ShoppingCartIcon className="h-4 w-4" />,
+  },
+  {
+    label: "Admin",
+    href: "/admin",
+    icon: <UserIcon className="h-4 w-4" />,
   },
   {
     label: "Debug Contracts",
