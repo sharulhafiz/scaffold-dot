@@ -60,7 +60,7 @@ module.exports = {
       url: `http://127.0.0.1:8545`,
       accounts: [
         "0x5fb92d6e98884f76de468fa3f6278f8807c48bebc13595d45af5bdc4da702133", // deployer
-        "0xecc471898fd1ecad87731ff76ab3eaf3c0d2937c3d3832dc5f8c76b1a8ee00a3", // talisman
+        "0x06604c168a511eb3cdf8eb14f96c2c87cf77916c0c8d327aec50fe3405729430", // MetaMask (admin)
       ],
     },
     passetHub: {
